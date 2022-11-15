@@ -1,15 +1,19 @@
-// import LoginPage from "./pages/Login/LoginPage";
-import GlobalStyles from "./components/GlobalStyles"
-import HomePage from "./pages/Home/HomePage";
-// import ReginstrationPage from "./pages/Registration/RegistrationPage";
+import GlobalStyles from "./components/GlobalStyles";
+import AddRecord from "./pages/AddRecord/AddRecord";
+import RemoveRecordPage from "./pages/RemoveRecord/RemoveRecord";
+import SignInPage from "./pages/SignIn/SignInPage";
+import SignUpPage from "./pages/SignUp/SignUpPage";
+// import HomePage from "./pages/Home/HomePage";
 
 function App() {
   return (
     <div>
       <GlobalStyles />
-      {/* <LoginPage /> */}
-      {/* <ReginstrationPage /> */}
-      <HomePage /> 
+      {/* <SignInPage /> */}
+      {/* <SignUpPage /> */}
+      {/* <HomePage />  */}
+      {/* <AddRecord /> */}
+      <RemoveRecordPage />
     </div>
   );
 }

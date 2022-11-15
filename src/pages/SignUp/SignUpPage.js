@@ -1,6 +1,6 @@
 import { FormStyle, StylePage } from "../../constants/styleSing-in-up";
 
-export default function ReginstrationPage() {
+export default function SingUpPage() {
   return (
     <StylePage>
       <h1>MyWallet</h1>
