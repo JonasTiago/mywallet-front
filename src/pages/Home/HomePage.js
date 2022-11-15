@@ -1,12 +1,12 @@
-import { RegistrationAreaStyle, StyleHome } from "./styleHome";
+import { RegistrationAreaStyle, StyleHome, RegistratStyle } from "./styleHome";
 import Exit from "../../assets/exit.svg";
 import Add from "../../assets/add-circle.svg";
 import Remove from "../../assets/remove-circle.svg";
-import { RECODER } from "../../mocks/registros";
+// import { RECODER } from "../../mocks/registros";
 
 export default function HomePage() {
-    const user = "Jonas";
-    const records = RECODER;
+  const user = "Jonas";
+  const records = false;
 
   return (
     <StyleHome>
@@ -15,8 +15,21 @@ export default function HomePage() {
         <img src={Exit} alt="Botão de sair" />
       </header>
       <RegistrationAreaStyle>
-        {/* {records ? records.map{}} */}
-        <p>Não há registros de entrada ou saída</p>
+        {records ? (
+          <ul>
+            {records.map((record) => (
+              <RegistratStyle teste={record.status === "E" ? true : false } >
+                <div>
+                    <span>{record.date}</span>
+                    <span>{record.descrição}</span>
+                </div>
+                <span>{record.valor}</span>
+              </RegistratStyle>
+            ))}
+          </ul>
+        ) : (
+          <p>Não há registros de entrada ou saída</p>
+        )}
       </RegistrationAreaStyle>
       <div>
         <button>

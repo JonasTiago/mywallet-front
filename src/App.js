@@ -1,7 +1,7 @@
 // import LoginPage from "./pages/Login/LoginPage";
 import GlobalStyles from "./components/GlobalStyles"
 import HomePage from "./pages/Home/HomePage";
-import ReginstrationPage from "./pages/Registration/RegistrationPage";
+// import ReginstrationPage from "./pages/Registration/RegistrationPage";
 
 function App() {
   return (
