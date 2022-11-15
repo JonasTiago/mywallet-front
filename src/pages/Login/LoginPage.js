@@ -6,14 +6,19 @@ export default function LoginPage() {
       <h1>MyWallet</h1>
       <form>
         <label htmlFor="email">
-          <input type="email" name="email" />
+          <input type="email" name="email" placeholder="E-mail" required />
         </label>
-        <label htmlFor="passworld">
-          <input type="passworld" name="passworld" />
+        <label htmlFor="password">
+          <input
+            type="password"
+            name="password"
+            placeholder="Senha"
+            required
+          />
         </label>
         <input type="submit" value="Entrar" />
-        <a href="reginstration">Primeira vez? Cadastre-se!</a>
       </form>
+      <a href="reginstration">Primeira vez? Cadastre-se!</a>
     </StylePage>
   );
 }
