@@ -1,10 +1,10 @@
-import { StylePage } from "../../constants/styleSing-in-up";
+import { FormStyle, StylePage } from "../../constants/styleSing-in-up";
 
 export default function ReginstrationPage() {
   return (
     <StylePage>
       <h1>MyWallet</h1>
-      <form>
+      <FormStyle>
         <label htmlFor="Name">
           <input type="text" name="name" placeholder="Nome" required />
         </label>
@@ -23,7 +23,7 @@ export default function ReginstrationPage() {
           />
         </label>
         <input type="submit" value="Cadastrar" />
-      </form>
+      </FormStyle>
       <a href="reginstration">Já tem uma conta? Entre agora!</a>
     </StylePage>
   );

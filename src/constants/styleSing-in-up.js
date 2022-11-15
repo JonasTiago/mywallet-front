@@ -15,38 +15,38 @@ export const StylePage = styled.div`
     margin-bottom: 1.71rem;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    font-family: "Raleway", sans-serif;
-
-    input {
-      font-size: 1.28rem;
-      padding:0 0.98rem;
-      width: 20.375rem;
-      height: 3.625rem;
-      margin-bottom: 0.81rem;
-      border-radius: 5px;
-      border: none;
-
-      ::placeholder{
-        color:#000000;
-      }
-    }
-
-    input[type=submit]{
-        height:2.875rem;
-        background-color: #A328D6;
-        color:#ffffff;
-        margin-bottom:2.25rem;
-        font-weight:700;
-    }
-  }
-
   a {
     color: #ffffff;
     font-family: "Raleway", sans-serif;
-    font-weight:700;
-    text-decoration:none;
+    font-weight: 700;
+    text-decoration: none;
+  }
+`;
+
+export const FormStyle = styled.form`
+  display: flex;
+  flex-direction: column;
+  font-family: "Raleway", sans-serif;
+
+  input {
+    font-size: 1.28rem;
+    padding: 0 0.98rem;
+    width: 20.375rem;
+    height: 3.625rem;
+    margin-bottom: 0.81rem;
+    border-radius: 5px;
+    border: none;
+
+    ::placeholder {
+      color: #000000;
+    }
+  }
+
+  input[type="submit"] {
+    height: 2.875rem;
+    background-color: #a328d6;
+    color: #ffffff;
+    margin-bottom: 2.25rem;
+    font-weight: 700;
   }
 `;

@@ -1,6 +1,7 @@
 // import LoginPage from "./pages/Login/LoginPage";
 import GlobalStyles from "./components/GlobalStyles"
-// import ReginstrationPage from "./pages/Registration/RegistrationPage";
+import HomePage from "./pages/Home/HomePage";
+import ReginstrationPage from "./pages/Registration/RegistrationPage";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <GlobalStyles />
       {/* <LoginPage /> */}
       {/* <ReginstrationPage /> */}
+      <HomePage /> 
     </div>
   );
 }
