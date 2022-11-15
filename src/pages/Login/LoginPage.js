@@ -1,4 +1,4 @@
-import { StylePage } from "./styleLogin";
+import { StylePage } from "../../constants/styleSing-in-up";
 
 export default function LoginPage() {
   return (
