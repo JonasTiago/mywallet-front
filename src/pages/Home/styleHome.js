@@ -6,7 +6,7 @@ export const StyleHome = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.56rem 0;
+  padding: 1.56rem 0 1rem 0;
   font-family: "Raleway", sans-serif;
 
   header {
@@ -16,7 +16,7 @@ export const StyleHome = styled.div`
     align-items: center;
     justify-content: space-between;
     font-size: 1.625rem;
-    margin: 0 auto;
+    margin: 0 auto 5px auto;
     font-weight: 700;
   }
 
@@ -30,8 +30,8 @@ export const StyleHome = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 11.071em;
-      height: 8.142em;
+      width: 9.6875rem;
+      height: 7.125rem;
       background-color: #a328d6;
       color: #ffffff;
       border: none;
@@ -54,6 +54,7 @@ export const StyleHome = styled.div`
 `;
 
 export const RegistrationAreaStyle = styled.div`
+  position:relative;
   width: 20.375rem;
   background-color: #ffffff;
   margin: 0 auto;
@@ -61,17 +62,22 @@ export const RegistrationAreaStyle = styled.div`
   max-height: 75%;
   height: 73%;
   border-radius: 5px;
-  padding: 23px 10px;
+  padding: 20px 10px;
+
+  
 
   > ul {
     width: 100%;
     font-family: "Raleway", sans-serif;
     font-size: 16px;
     font-weight: 400;
-
+    overflow:auto;
+    ::-webkit-scrollbar{
+      width:0px;
+    }
   }
 
-  p {
+  >p {
     color: #868686;
     font-size: 1.25rem;
     text-align: center;
@@ -79,12 +85,36 @@ export const RegistrationAreaStyle = styled.div`
     margin: auto;
     align-items: center;
   }
+
+  >div{
+    background-color:#ffffff;
+    position:absolute;
+    bottom:0;
+    left:0;
+    margin:5px 0;
+    padding: 5px 10px;
+    display:flex;
+
+
+    >p{
+      text-transform:uppercase;
+      font-weight:700;
+      font-size:17px;
+    }
+    >span{
+      font-size:17px;
+      font-weight:bold;
+      color:#03AC00 /*#C70000*/ ;
+
+    }
+  }
 `;
 
 export const RegistratStyle = styled.li`
-  margin: 0 auto 19px auto;
+  margin: 0 auto 20px auto;
   display: flex;
   justify-content: space-between;
+  font-size:1rem;
 
   > div {
     display: initial;
@@ -98,6 +128,7 @@ export const RegistratStyle = styled.li`
   }
 
   > span {
+    margin-left:5px;
     color: ${(props) => (props.teste ? "#03ac00" : "#C70000")};
   }
 `;

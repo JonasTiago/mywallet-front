@@ -12,9 +12,9 @@ body{
 
 }
 
-/*a{
+a{
 	text-decoration:none;
-}*/
+}
 
 
 html, body, div, span, applet, object, iframe,

@@ -19,7 +19,7 @@ export default function RemoveRecordPage() {
             required
           />
         </label>
-        <input type="submit" value="Salvar entrada" />
+        <input type="submit" value="Salvar saída" />
       </FormStyle>
     </StyleRecordPage>
   );

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FormStyle, StylePage } from "../../constants/styleSing-in-up";
 
 export default function SingUpPage() {
@@ -18,13 +19,13 @@ export default function SingUpPage() {
           <input
             type="password"
             name="passwordConfirm"
-            placeholder="Senha"
+            placeholder="Confirme a senha"
             required
           />
         </label>
         <input type="submit" value="Cadastrar" />
       </FormStyle>
-      <a href="reginstration">Já tem uma conta? Entre agora!</a>
+      <Link to={"/"}>Já tem uma conta? Entre agora!</Link>
     </StylePage>
   );
 }
