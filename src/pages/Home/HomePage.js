@@ -3,13 +3,49 @@ import Exit from "../../assets/exit.svg";
 import Add from "../../assets/add-circle.svg";
 import Remove from "../../assets/remove-circle.svg";
 import { Link } from "react-router-dom";
-import { RECODER } from "../../mocks/registros";
+import {  useContext, useEffect, useState } from "react";
+import { UserAuthContext } from "../../constants/UseAuth";
+import axios from "axios";
 
 export default function HomePage() {
-  const user = "Jonas";
-  const records = RECODER;
+  const { user, token } = useContext(UserAuthContext);
+  const [records, setRecords] = useState([]);
+  // const [balance, setBalance] = useState("00.00");
 
-  // console.log(records.length);
+  useEffect(
+    (res) => {
+      const URL_BASE = "http://localhost:5000/records";
+
+      axios
+        .get(URL_BASE, { headers: { authorization: `Bearer ${token}` } })
+        .then((res) => {
+          setRecords(res.data);
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+    },
+    [token]
+  );
+
+
+
+  // function calcTotal() {
+  //   const entradas = records
+  //     .filter((item) => item.status === "entrada" && item.valor)
+  //     .map((item) => parseFloat(item.valor));
+
+  //   const totalEntradas =
+  //     entradas.length > 0 ? entradas.reduce((a, b) => a + b) : 0;
+
+  //   const saidas = records
+  //     .filter((item) => item.status === "saida" && item.valor)
+  //     .map((item) => parseFloat(item.valor));
+
+  //   const totalSaidas = saidas.length > 0 ? saidas.reduce((a, b) => a + b) : 0;
+
+  //   setBalance(balance - parseFloat(totalEntradas - totalSaidas).toFixed(2));
+  // }
 
   return (
     <StyleHome>
@@ -18,7 +54,7 @@ export default function HomePage() {
         <img src={Exit} alt="Botão de sair" />
       </header>
       <RegistrationAreaStyle>
-        {records ? (
+        {records.length ? (
           <>
             <ul>
               {records.map((record, indx) => (
@@ -36,7 +72,7 @@ export default function HomePage() {
             </ul>
             <div>
               <p>saldo</p>
-              <span>00,00</span>
+              <span>{"0"}</span>
             </div>
           </>
         ) : (
