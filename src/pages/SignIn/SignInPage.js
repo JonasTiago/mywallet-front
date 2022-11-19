@@ -2,10 +2,11 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FormStyle, StylePage } from "../../constants/styleSing-in-up";
-import { UserAuthContext } from "../../constants/UseAuth";
+import { AuthContext } from "../../contexts/AuthContext";
+import URL_BASE from "../../constants/URL_BASE";
 
 export default function LoginPage() {
-  const { setUser, setToken } = useContext(UserAuthContext);
+  const { setUser, setToken } = useContext(AuthContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
@@ -21,11 +22,11 @@ export default function LoginPage() {
 
   function signIn(e) {
     e.preventDefault();
-    const body = form;
 
-    const URL_BASE = "http://localhost:5000/sign-in";
+    const body = form;
+    
     axios
-      .post(URL_BASE, body)
+      .post(`${URL_BASE}/sign-in`, body)
       .then((res) => {
         setToken(res.data.token);
         setUser(res.data.user);

@@ -3,10 +3,11 @@ import { FormStyle } from "../../constants/styleSing-in-up";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserAuthContext } from "../../constants/UseAuth";
+import { AuthContext } from "../../contexts/AuthContext";
+import URL_BASE from "../../constants/URL_BASE";
 
 export default function ExpenseAddPage() {
-  const { token } = useContext(UserAuthContext);
+  const { token } = useContext(AuthContext);
   const [form, setForm] = useState({
     descrição: "",
     valor: "",
@@ -24,12 +25,10 @@ export default function ExpenseAddPage() {
     e.preventDefault();
     const body = form;
 
-    const URL_BASE = "http://localhost:5000/records/saida";
-
     const headers = { authorization: `Bearer ${token}` };
 
     axios
-      .post(URL_BASE, body, { headers })
+      .post(`${URL_BASE}/records/saida`, body, { headers })
       .then((res) => {
         navigate("/home");
       })

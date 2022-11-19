@@ -104,7 +104,7 @@ export const RegistrationAreaStyle = styled.div`
     >span{
       font-size:17px;
       font-weight:bold;
-      color:#03AC00 /*#C70000*/ ;
+      color:${props => props.leftover > 0 ? "#03AC00" :"#C70000"};
 
     }
   }

@@ -3,15 +3,16 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StyleRecordPage } from "../../constants/StyleRecordPage";
 import { FormStyle } from "../../constants/styleSing-in-up";
-import { UserAuthContext } from "../../constants/UseAuth";
+import URL_BASE from "../../constants/URL_BASE";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function RevenuesAdd() {
-  const { token } = useContext(UserAuthContext);
+  const { token } = useContext(AuthContext);
   const [form, setForm] = useState({
     descrição: "",
     valor: "",
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function fillInForm(e) {
     setForm({
@@ -24,14 +25,12 @@ export default function RevenuesAdd() {
     e.preventDefault();
     const body = form;
 
-    const URL_BASE = "http://localhost:5000/records/entrada";
-
     const headers = { authorization: `Bearer ${token}` };
 
     axios
-      .post(URL_BASE, body, { headers })
+      .post(`${URL_BASE}/records/entrada`, body, { headers })
       .then((res) => {
-        navigate("/home")
+        navigate("/home");
       })
       .catch((res) => alert("Algo deu errado"));
   }

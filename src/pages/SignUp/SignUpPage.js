@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FormStyle, StylePage } from "../../constants/styleSing-in-up";
+import URL_BASE from "../../constants/URL_BASE";
 
 export default function SingUpPage() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -21,17 +23,12 @@ export default function SingUpPage() {
   function signup(e) {
     e.preventDefault();
 
-    const { name, email, password } = form;
-
-    const body = { name, email, password };
-
-    console.log(body);
-
-    const URL_BASE = "http://localhost:5000/sign-up";
-
+    const body = form;
+    
     axios
-      .post(URL_BASE, body)
+      .post(`${URL_BASE}/sign-up`, body)
       .then((res) => {
+        navigate("/");
         console.log(res);
       })
       .catch((res) => {
@@ -45,12 +42,7 @@ export default function SingUpPage() {
           default:
             console.log("erro");
         }
-        console.log(res.response.status);
       });
-
-    if (form.password === form.passwordConfirm) {
-      console.log(form);
-    }
   }
 
   return (
@@ -96,6 +88,8 @@ export default function SingUpPage() {
             name="passwordConfirm"
             value={form.passwordConfirm}
             onChange={fillInForm}
+            pattern={form.password}
+            title="As senhas devem ser iguais!"
             placeholder="Confirme a senha"
             required
           />

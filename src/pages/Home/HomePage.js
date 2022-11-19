@@ -2,22 +2,24 @@ import { RegistrationAreaStyle, StyleHome, RegistratStyle } from "./styleHome";
 import Exit from "../../assets/exit.svg";
 import Add from "../../assets/add-circle.svg";
 import Remove from "../../assets/remove-circle.svg";
-import { Link } from "react-router-dom";
-import {  useContext, useEffect, useState } from "react";
-import { UserAuthContext } from "../../constants/UseAuth";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../../contexts/AuthContext";
+import URL_BASE from "../../constants/URL_BASE";
 
 export default function HomePage() {
-  const { user, token } = useContext(UserAuthContext);
+  const { user, token, setUser, setToken } = useContext(AuthContext);
   const [records, setRecords] = useState([]);
-  // const [balance, setBalance] = useState("00.00");
+  const navigate = useNavigate();
+  const [balance, setBalance] = useState(0);
 
   useEffect(
     (res) => {
-      const URL_BASE = "http://localhost:5000/records";
-
       axios
-        .get(URL_BASE, { headers: { authorization: `Bearer ${token}` } })
+        .get(`${URL_BASE}/records`, {
+          headers: { authorization: `Bearer ${token}` },
+        })
         .then((res) => {
           setRecords(res.data);
         })
@@ -28,32 +30,36 @@ export default function HomePage() {
     [token]
   );
 
+  useMemo(() => {
+    const entradas = records
+      .filter((item) => item.status === "entrada" && item.valor)
+      .map((item) => parseFloat(item.valor));
 
+    const totalEntradas =
+      entradas.length > 0 ? entradas.reduce((a, b) => a + b) : 0;
 
-  // function calcTotal() {
-  //   const entradas = records
-  //     .filter((item) => item.status === "entrada" && item.valor)
-  //     .map((item) => parseFloat(item.valor));
+    const saidas = records
+      .filter((item) => item.status === "saida" && item.valor)
+      .map((item) => parseFloat(item.valor));
 
-  //   const totalEntradas =
-  //     entradas.length > 0 ? entradas.reduce((a, b) => a + b) : 0;
+    const totalSaidas = saidas.length > 0 ? saidas.reduce((a, b) => a + b) : 0;
 
-  //   const saidas = records
-  //     .filter((item) => item.status === "saida" && item.valor)
-  //     .map((item) => parseFloat(item.valor));
+    setBalance(parseFloat(totalEntradas - totalSaidas).toFixed(2));
+  }, [records]);
 
-  //   const totalSaidas = saidas.length > 0 ? saidas.reduce((a, b) => a + b) : 0;
-
-  //   setBalance(balance - parseFloat(totalEntradas - totalSaidas).toFixed(2));
-  // }
+  function exitApp() {
+    setToken();
+    setUser();
+    navigate("/");
+  }
 
   return (
     <StyleHome>
       <header>
         <h1>Olá, {user}</h1>
-        <img src={Exit} alt="Botão de sair" />
+        <img src={Exit} alt="Botão de sair" onClick={() => exitApp()} />
       </header>
-      <RegistrationAreaStyle>
+      <RegistrationAreaStyle leftover={balance}>
         {records.length ? (
           <>
             <ul>
@@ -72,7 +78,7 @@ export default function HomePage() {
             </ul>
             <div>
               <p>saldo</p>
-              <span>{"0"}</span>
+              <span>{balance}</span>
             </div>
           </>
         ) : (
