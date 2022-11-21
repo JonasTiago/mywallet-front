@@ -34,10 +34,10 @@ export default function SingUpPage() {
       .catch((res) => {
         switch (res.response.status) {
           case 409:
-            alert(res.response.data.message);
+            alert("Email já cadastrado!");
             break;
           case 422:
-            console.log(res.response.data);
+            alert(res.response.data);
             break;
           default:
             console.log("erro");

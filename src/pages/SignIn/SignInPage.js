@@ -33,7 +33,8 @@ export default function LoginPage() {
         navigate("/home");
       })
       .catch((res) => {
-        console.log(res);
+        console.log(res.response.status);
+        alert("Senha ou Usuario, Invalido!")
       });
   }
 
